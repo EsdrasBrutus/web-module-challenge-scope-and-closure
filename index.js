@@ -28,11 +28,15 @@ console.log(processFirstItem(['foo','bar'],function(str){return str+str}));
   Study the code for counter1 and counter2, then answer the questions below.
   
   1. What is the difference between counter1 and counter2?
-  
+    The count variable is within the function block in the counter1 code and outside of it in the counter 2 code.
+
   2. Which of the two uses a closure? How can you tell?
-  
+    Counter2 because the function is looking outside into the global scope for the count variable.
+
   3. In what scenario would the counter1 code be preferable? In what scenario would 
      counter2 be better?  
+     The counter1 code would be perferable when you want to know whether the function has been run only once. The counter2 code would be
+     perferable if you wanted to know how many times the function has been run.
 */
 
 // counter1 code
@@ -62,8 +66,8 @@ Use the inning function below to do the following:
 NOTE: This will be a callback function for the tasks below
 */
 
-function inning(/*Code Here*/){
-    /*Code Here*/
+function inning(){
+ return Math.floor(Math.random() * 3)
 }
 
 
@@ -81,18 +85,38 @@ Use the finalScore function below to do the following:
 }
 */ 
 
-function finalScore(/*code Here*/){
-  /*Code Here*/
+function finalScore(inning_num, callback){
+  let score = {
+    "Home": 0,
+    "Away": 0
+  };
+
+  for (let i=0; i < inning_num; i++){
+    score.Home += callback();
+    score.Away += callback();
+  };
+  
+  return score
 }
 
 /* ⚾️⚾️⚾️ Task 4: getInningScore() ⚾️⚾️⚾️
 Use the getInningScore() function below to do the following:
   1. Receive a callback function - you will pass in the inning function from task 2 as your argument 
   2. Return an object with a score for home and a score for away that populates from invoking the inning callback function */
-
-function getInningScore(/*Your Code Here */) {
-  /*Your Code Here */
-}
+  
+  function getInningScore(callback) {
+    let score = {
+      "Home": 0,
+      "Away": 0
+    }
+    
+    if (typeof callback == "function") {
+      score.Home = callback();
+      score.Away = callback(); 
+    }
+  
+    return score
+  }
 
 
 /* ⚾️⚾️⚾️ Task 5: scoreboard() ⚾️⚾️⚾️
@@ -136,11 +160,32 @@ Use the scoreboard function below to do the following:
 ]  
   */
 
-function scoreboard(/* CODE HERE */) {
-  /* CODE HERE */
+ function scoreboard (callback1, callback2, innings) {
+  let scoreboard = [];
+  sumAway = 0;
+  sumHome = 0;
+  
+  for (let i = 0; i < innings; i++){
+    scoreboard.push(`Inning ${i + 1}: Away ${callback1(callback2).Away} - Home ${callback1(callback2).Home}`)
+  };
+ 
+  for (let i = 0; i < scoreboard.length; i++){
+    sumAway += +scoreboard[i].slice(15,16)
+    sumHome += +scoreboard[i].slice(24,25)
+ };
+  
+  if (sumAway == sumHome){
+    scoreboard.push(`This game will require extra innings: Away ${sumAway} - Home ${sumHome}`) 
+   
+  }
+  
+  else{
+    scoreboard.push(`Final Score: Away ${sumAway} - Home ${sumHome}`)
+  }
+  log(sumAway)
+  log(sumHome)
+  return scoreboard
 }
-
-
 
 
 /* 🛑🛑🛑🛑🛑 Please do not modify anything below this line 🛑🛑🛑🛑🛑 */
