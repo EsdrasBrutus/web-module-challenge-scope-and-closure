@@ -28,11 +28,15 @@ console.log(processFirstItem(['foo','bar'],function(str){return str+str}));
   Study the code for counter1 and counter2, then answer the questions below.
   
   1. What is the difference between counter1 and counter2?
-  
+    The count variable is within the function block in the counter1 code and outside of it in the counter 2 code.
+
   2. Which of the two uses a closure? How can you tell?
-  
+    Counter2 because the function is looking outside into the global scope for the count variable.
+
   3. In what scenario would the counter1 code be preferable? In what scenario would 
      counter2 be better?  
+     The counter1 code would be perferable when you want to know whether the function has been run only once. The counter2 code would be
+     perferable if you wanted to know how many times the function has been run.
 */
 
 // counter1 code

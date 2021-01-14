@@ -43,6 +43,7 @@ Find the file `index.js` and complete the tasks.
 Edit the `ReadMe` file with your answers.
 
 1. In your own words, define closure (1-2 sentences).
+    A closure is a persistent scope which holds on to local variables even after the code execution has moved out of that block.
 2. Study the following code, then answer the questions below.
 
 ```js
@@ -64,8 +65,11 @@ dansRoll();
 ```
 
 a. Where is closure used in this code? How can you tell?
+    the name parameter is being called outside of the scope of the returned anonymous function but is still able to be used by it.
 b. Compare and contrast calling `dansRoll` the first and second time. What is always the same? What could change?
+the string 'Dan rolled a' is always the same but the number could always be different.
 c. What is the lexical scope of `newRoll`? 
+'newRoll''s scope is within the returned anonymous function within personalDice.
 
 
 ### Task 3 - Stretch Goals
